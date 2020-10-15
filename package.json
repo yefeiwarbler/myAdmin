@@ -1,0 +1,44 @@
+{
+  "name": "market",
+  "version": "1.0.0",
+  "description": "a online market",
+  "main": "mian.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules\\.bin\\webpack --mode=production",
+    "babel": "node_modules\\.bin\\babel",
+    "start": "node_modules\\.bin\\webpack-dev-server"
+  },
+  "keywords": [
+    "vue",
+    "market"
+  ],
+  "author": "yefei",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "css-loader": "^4.3.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "vue-loader": "^15.9.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "element-ui": "^2.13.2",
+    "vue": "^2.6.11"
+  }
+}

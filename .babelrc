@@ -1,0 +1,15 @@
+{
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+        [
+          // element-ui部分引入，减小体积
+          "component",
+          {
+            "libraryName": "element-ui",
+            "styleLibraryName": "theme-chalk"
+          }
+        ]
+    ]
+}
