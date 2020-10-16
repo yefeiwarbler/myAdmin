@@ -1,7 +1,7 @@
 {
-  "name": "market",
+  "name": "admin",
   "version": "1.0.0",
-  "description": "a online market",
+  "description": "market admin",
   "main": "mian.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
   },
   "keywords": [
     "vue",
-    "market"
+    "admin"
   ],
   "author": "yefei",
   "license": "MIT",
