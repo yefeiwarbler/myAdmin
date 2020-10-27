@@ -9,7 +9,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/app.js',
-        publicPath: '/dist/'
+        publicPath: '/'
+    },
+    resolve:{
+        alias: {
+            pages : path.resolve(__dirname, 'src/pages')
+        }
     },
     module:{
         rules:[
@@ -81,9 +86,9 @@ module.exports = {
         ],
     },
     plugins: [
-        // 生成html，指定生成html的模板文件
+        // 生成html
         new HtmlWebpackPlugin({
-            template: './public/index.html',
+            template: './public/index.html', // 指定生成html的模板文件
             favicon: './public/favicon.ico'
         }),
         // vue-style-loader 和 vue-loader 的依赖
@@ -97,7 +102,8 @@ module.exports = {
             test: /\.(js|css|vue|scss)$/i,
         }),
     ],
-    optimization:{// 提取公用模块
+    // 提取公用模块
+    optimization:{
         splitChunks: {
             chunks: 'async',
             minSize: 20000,
@@ -107,6 +113,12 @@ module.exports = {
         }
     },
     devServer: {
-        port: '8088'
+        host: '0.0.0.0',
+        port: '8088',
+        // publicPath: '/',
+        useLocalIp: true,
+        open: true,
+        openPage: '',
+        historyApiFallback: true,
     },
 }
