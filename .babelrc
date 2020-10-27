@@ -10,6 +10,13 @@
             "libraryName": "element-ui",
             "styleLibraryName": "theme-chalk"
           }
+        ],
+        [
+          // async、await语法支持
+          "@babel/plugin-transform-runtime",
+          {
+            "regenerator": true
+          }
         ]
     ]
 }
