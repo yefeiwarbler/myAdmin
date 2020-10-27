@@ -1,37 +1,41 @@
 <template>
-    <el-row type="flex" justify="center" :gutter="15">
+    <el-row type="flex" justify="center" :gutter="15" class="login-form-outter-container">
         <el-col :md="6" :xs="24">
-            <div class="login-title">欢迎登录 - ADMIN</div>
-            <el-form
-                :model="loginForm"
-                :rules="rules"
-                label-width="100px"
-                ref="loginForm"
-            >
-                <el-form-item label="用户名" prop="username">
-                    <el-input
-                        placeholder="请输入用户名"
-                        v-model="loginForm.username"
-                    >
-                    </el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input
-                        type="password"
-                        placeholder="请输入密码"
-                        v-model="loginForm.password"
-                    ></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button 
-                        type="primary"
-                        @click="onSubmit('loginForm')"
-                    >登录</el-button>
-                    <el-button
-                        @click="resetForm('loginForm')"
-                    >重置</el-button>
-                </el-form-item>
-            </el-form>
+            <div class="login-form-container">
+                <p class="login-title">欢迎登录 - ADMIN</p>
+                <el-form
+                    :model="loginForm"
+                    :rules="rules"
+                    label-width="80px"
+                    ref="loginForm"
+                >
+                    <el-form-item label="用户名" prop="username">
+                        <el-input
+                            placeholder="请输入用户名"
+                            v-model="loginForm.username"
+                            @keyup.enter.native="onSubmit('loginForm')"
+                        >
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                        <el-input
+                            type="password"
+                            placeholder="请输入密码"
+                            v-model="loginForm.password"
+                            @keyup.enter.native="onSubmit('loginForm')"
+                        ></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button 
+                            type="primary"
+                            @click="onSubmit('loginForm')"
+                        >登录</el-button>
+                        <el-button
+                            @click="resetForm('loginForm')"
+                        >重置</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
         </el-col>
     </el-row>
 </template>
@@ -51,6 +55,7 @@ export default {
                 password: "",
                 redirect: "",
             },
+            // 表单校验
             rules: {
                 username: [
                     {required: true, message: "请输入用户名", trigger: "blur"}
@@ -61,15 +66,18 @@ export default {
             },
         }
     },
+    // 修改页面标题
     beforeCreate(){
         document.title = "登录 - ADMIN"
     },
     created(){
+        // 获取url参数，用于登录成功后的跳转
+        this.redirect = getUrlParam("redirect") || "/";
+        // 用户已登录，跳转
         const userInfo = getLocalStorage("userInfo");
         if( userInfo ){
-            this.$router.push("/");
+            this.$router.push(this.redirect);
         }
-        this.redirect = getUrlParam("redirect") || "/";
     },
     methods: {
         // 表单提交
@@ -116,16 +124,33 @@ export default {
             this.$router.push({
                 path : this.redirect
             });
-        }
+        },
     }
 }
 </script>
 
 <style scoped>
+    .login-form-outter-container{
+        height: 100%;
+        background: #eee;
+    }
+    .login-form-container{
+        margin-top: 30%;
+        padding: 54px 20px 10px 0;
+        background: #fff;
+        border-radius: 5%;
+        box-shadow:3px 3px 4px #888;
+    }
     .login-title{
-        margin-top: 60px;
         margin-bottom: 24px;
         font-size: 30px;
         text-align: center;
     }
+    body{
+        background: #eee;
+    }
+</style>
+
+<style>
+
 </style>
