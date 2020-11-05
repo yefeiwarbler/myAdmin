@@ -13,7 +13,10 @@ module.exports = {
     },
     resolve:{
         alias: {
-            pages : path.resolve(__dirname, 'src/pages')
+            pages       : path.resolve(__dirname, 'src/pages'),
+            util        : path.resolve(__dirname, 'src/util')   ,
+            service     : path.resolve(__dirname, 'src/service' ),
+            components  : path.resolve(__dirname, 'src/components'),
         }
     },
     module:{
@@ -113,12 +116,11 @@ module.exports = {
         }
     },
     devServer: {
-        host: '0.0.0.0',
-        port: '8088',
-        // publicPath: '/',
-        useLocalIp: true,
-        open: true,
-        openPage: '',
-        historyApiFallback: true,
+        host                : '0.0.0.0',
+        port                : '8088',
+        useLocalIp          : true,
+        open                : true,
+        openPage            : '',
+        historyApiFallback  : true,
     },
 }
