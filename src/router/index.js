@@ -1,12 +1,17 @@
-import Login from 'pages/Login.vue';
-import Home from 'pages/Home.vue';
+import Login from 'pages/login/index.vue';
+import Layout from 'components/Layout.vue';
 import VueRouter from 'vue-router';
+
+import Product from "pages/product/index.vue";
+import Order from "pages/order/index.vue";
+import User from "pages/user/index.vue";
+import Home from "pages/home/index.vue";
 
 const routes = [
     // 404
     {
         path: "*",
-        component: Home
+        component: Layout
     },
     // 登录页面
     {
@@ -15,13 +20,31 @@ const routes = [
     },
     {
         path: "/",
-        component: Home,
+        component: Layout,
+        children: [
+            {
+                path: "/product",
+                component: Product,
+            },
+            {
+                path: "/order",
+                component: Order,
+            },
+            {
+                path: "/user",
+                component: User,
+            },
+            {
+                path: "/",
+                component: Home,
+            },
+        ]
     },
 ];
 
-const Router = new VueRouter({
+const router = new VueRouter({
     mode : "history",
-    routes
+    routes,
 });
 
-export default Router;
+export default router;

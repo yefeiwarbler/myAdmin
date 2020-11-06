@@ -17,6 +17,7 @@ module.exports = {
             util        : path.resolve(__dirname, 'src/util')   ,
             service     : path.resolve(__dirname, 'src/service' ),
             components  : path.resolve(__dirname, 'src/components'),
+            router      : path.resolve(__dirname, 'src/router'),
         }
     },
     module:{
