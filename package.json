@@ -1,17 +1,18 @@
 {
-  "name": "admin",
+  "name": "my-admin",
   "version": "1.0.0",
-  "description": "market admin",
+  "description": "my market admin",
   "main": "mian.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules\\.bin\\webpack --mode=production",
     "babel": "node_modules\\.bin\\babel",
-    "start": "node_modules\\.bin\\webpack-dev-server"
+    "dev": "node_modules\\.bin\\webpack-dev-server"
   },
   "keywords": [
     "vue",
-    "admin"
+    "admin",
+    "element-ui"
   ],
   "author": "yefei",
   "license": "MIT",
