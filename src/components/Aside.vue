@@ -34,7 +34,7 @@
                     <i class="el-icon-user"></i>
                     <span slot="title">用户</span>
                 </template>
-                <el-menu-item index="4-1" route="/user">用户管理</el-menu-item>
+                <el-menu-item index="/user" route="/user">用户管理</el-menu-item>
             </el-submenu>
         </el-menu>
     </el-aside>
