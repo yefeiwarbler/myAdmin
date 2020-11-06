@@ -1,3 +1,7 @@
-import User from './user.js'
+import User from "./userService.js";
 
-export default User;
+export {
+    User
+};
+
+export * from "./statisticService.js"
