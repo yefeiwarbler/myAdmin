@@ -1,5 +1,6 @@
 <template>
     <el-row type="flex" justify="center" :gutter="15" class="login-form-outter-container">
+        <PageTitle pageTitle="登录 - MARKET ADMIN" />
         <el-col :md="6" :xs="24">
             <div class="login-form-container">
                 <p class="login-title">欢迎登录 - ADMIN</p>
@@ -41,8 +42,9 @@
 </template>
 
 <script>
-import User from '../service/index';
-import { setLocalStorage, getUrlParam, getLocalStorage } from '../util/index';
+import PageTitle from "components/PageTitle.vue";
+import User from 'service/index';
+import { setLocalStorage, getUrlParam, getLocalStorage } from 'util/index';
 
 const user = new User();
 
@@ -65,10 +67,6 @@ export default {
                 ]
             },
         }
-    },
-    // 修改页面标题
-    beforeCreate(){
-        document.title = "登录 - ADMIN"
     },
     created(){
         // 获取url参数，用于登录成功后的跳转
@@ -125,7 +123,10 @@ export default {
                 path : this.redirect
             });
         },
-    }
+    },
+    components:{
+        PageTitle
+    },
 }
 </script>
 
@@ -149,8 +150,4 @@ export default {
     body{
         background: #eee;
     }
-</style>
-
-<style>
-
 </style>
