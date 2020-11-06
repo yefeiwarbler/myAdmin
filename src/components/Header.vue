@@ -19,9 +19,13 @@
                     <el-submenu index="1">
                         <template slot="title">
                             <i class="el-icon-user-solid"></i>
-                            <span>欢迎，adminxxx</span>    
+                            <span v-if="this.username">欢迎，{{this.username}}</span>
+                            <span v-else>欢迎您</span>
                         </template>
-                        <el-menu-item index="1-1">退出登录</el-menu-item>
+                        <el-menu-item
+                            index="1-1"
+                            @click="logout()"
+                        >退出登录</el-menu-item>
                     </el-submenu>
                 </el-menu>
             </el-row>
@@ -30,20 +34,42 @@
 </template>
 
 <script>
-import Logo from './Logo.vue';
+import Logo from "./Logo.vue";
+import { getLocalStorage, removeLocalStorage } from "util/index";
+import User from "service/index";
+
+const user = new User();
 
 export default {
     name: "Header",
-        data() {
-            return {
-                activeIndex: '1',
-                activeIndex2: '1'
-            };
+    data() {
+        return {
+            activeIndex: "1",
+            activeIndex2: "1",
+            username: "",
+        };
+    },
+    created(){
+        let userInfo = getLocalStorage("userInfo");
+        this.username = userInfo.username || "";
     },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
+        handleSelect(key, keyPath) {
+            console.log(key, keyPath);
+        },
+        logout(){
+            user.logout()
+                .then(response => {
+                    if(response.status === 0){
+                        removeLocalStorage("userInfo");
+                        this.$router.push("/login");
+                    }
+                })
+                .catch(err => {
+                    alert("err");
+                    console.log(err);
+                });
+        }
     },
     components: {
         Logo
