@@ -1,5 +1,8 @@
 import Vue from "vue";
+import VueRouter from 'vue-router';
 import App from "./App.vue";
+
+// element-ui
 import {
     Container,
     Aside,
@@ -13,11 +16,24 @@ import {
     DropdownMenu,
     DropdownItem,
     Row,
-    Col
+    Col,
+    Form,
+    FormItem,
+    Input,
+    Button,
+    Link,
+    Breadcrumb,
+    BreadcrumbItem,
 } from 'element-ui';
-import Logo from './components/Logo.vue';
 
-Vue.use(Logo);
+import router from 'router/index.js';
+
+// mock
+import './mock/index.js';
+
+Vue.use(VueRouter);
+
+// element-ui
 Vue.use(Container);
 Vue.use(Aside);
 Vue.use(Header);
@@ -31,7 +47,15 @@ Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Input);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Button);
+Vue.use(Link);
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
 
 new Vue({
     render: h => h(App),
+    router
 }).$mount('#app');
