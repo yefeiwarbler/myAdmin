@@ -2,7 +2,7 @@ import Mock from "mockjs";
 
 // 模拟接口延时
 Mock.setup({
-    timeout: '200-600'
+    timeout: '600-1200'
 });
 
 // 用户登录接口
@@ -25,7 +25,7 @@ Mock.mock(`/user/login`, "post", function(options){
     }
     return {
         "status": 1,
-        "msg": "密码错误"
+        "msg": "用户名或密码不正确"
     }
 });
 
@@ -39,4 +39,14 @@ Mock.mock(`/user/logout`, "post", function(){
     //     "status": 1,
     //     "msg"   : "服务端异常",
     // };
+});
+
+Mock.mock(`/statistic/base-count`, "get", 
+        {
+            "status": 0,
+            "data": {
+                "userCount|1000-2000": 1000,
+                "orderCount|5000-10000": 5888,
+                "productCount|500-1000": 1000,
+        }
 });
