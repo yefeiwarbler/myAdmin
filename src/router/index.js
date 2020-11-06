@@ -3,16 +3,13 @@ import Layout from 'components/Layout.vue';
 import VueRouter from 'vue-router';
 
 import Product from "pages/product/index.vue";
+import ProductCategory from "pages/product/productCategory.vue";
 import Order from "pages/order/index.vue";
 import User from "pages/user/index.vue";
 import Home from "pages/home/index.vue";
+import PageError from "pages/error/index.vue";
 
 const routes = [
-    // 404
-    {
-        path: "*",
-        component: Layout
-    },
     // 登录页面
     {
         path: "/login",
@@ -27,6 +24,10 @@ const routes = [
                 component: Product,
             },
             {
+                path: "/product-category",
+                component: ProductCategory,
+            },
+            {
                 path: "/order",
                 component: Order,
             },
@@ -38,6 +39,11 @@ const routes = [
                 path: "/",
                 component: Home,
             },
+            // 404页面
+            {
+                path: "*",
+                component: PageError,
+            }
         ]
     },
 ];
