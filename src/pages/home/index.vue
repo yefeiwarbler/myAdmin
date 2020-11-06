@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import Layout from "components/Layout.vue";
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
 import { getHomeData } from "service/index.js";
@@ -72,7 +71,6 @@ export default {
         }
     },
     components: {
-        Layout,
         PageTitle,
         Breadcrumb,
         Message,
