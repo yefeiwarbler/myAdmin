@@ -5,10 +5,15 @@
 }
 
 body, html{
-    overflow: hidden;
     height: 100%;
+    overflow: auto;
 }
 
-#app{
-    height: 100%;
+a:-webkit-any-link{
+    color: inherit;
+    text-decoration: none;
+}
+
+#app, .el-container{
+    min-height: 100%;
 }
