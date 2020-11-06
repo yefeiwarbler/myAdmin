@@ -6,7 +6,7 @@
 export default {
     name: "PageTitle",
     props: {
-        pageTitle: "",
+        pageTitle: String,
     },
     created(){
         document.title = this.pageTitle;
