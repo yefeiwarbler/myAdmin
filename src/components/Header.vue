@@ -36,7 +36,7 @@
 <script>
 import Logo from "./Logo.vue";
 import { getLocalStorage, removeLocalStorage } from "util/index";
-import User from "service/index";
+import { User } from "service/index";
 
 const user = new User();
 
