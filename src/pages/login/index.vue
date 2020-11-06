@@ -1,50 +1,53 @@
 <template>
-    <el-row type="flex" justify="center" :gutter="15" class="login-form-outter-container">
-        <PageTitle pageTitle="登录 - MARKET ADMIN" />
-        <el-col :md="6" :xs="24">
-            <div class="login-form-container">
-                <p class="login-title">欢迎登录 - ADMIN</p>
-                <el-form
-                    :model="loginForm"
-                    :rules="rules"
-                    label-width="80px"
-                    ref="loginForm"
-                >
-                    <el-form-item label="用户名" prop="username">
-                        <el-input
-                            placeholder="请输入用户名"
-                            v-model="loginForm.username"
-                            @keyup.enter.native="onSubmit('loginForm')"
-                        >
-                        </el-input>
-                    </el-form-item>
-                    <el-form-item label="密码" prop="password">
-                        <el-input
-                            type="password"
-                            placeholder="请输入密码"
-                            v-model="loginForm.password"
-                            @keyup.enter.native="onSubmit('loginForm')"
-                        ></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button 
-                            type="primary"
-                            @click="onSubmit('loginForm')"
-                        >登录</el-button>
-                        <el-button
-                            @click="resetForm('loginForm')"
-                        >重置</el-button>
-                    </el-form-item>
-                </el-form>
-            </div>
-        </el-col>
-    </el-row>
+    <div class="login-form-outter-container">
+        <el-row type="flex" justify="center" :gutter="15" >
+            <PageTitle pageTitle="登录 - MARKET ADMIN" />
+            <el-col :md="6" :xs="24">
+                <div class="login-form-container">
+                    <p class="login-title">欢迎登录 - ADMIN</p>
+                    <el-form
+                        :model="loginForm"
+                        :rules="rules"
+                        label-width="80px"
+                        ref="loginForm"
+                    >
+                        <el-form-item label="用户名" prop="username">
+                            <el-input
+                                placeholder="请输入用户名"
+                                v-model="loginForm.username"
+                                @keyup.enter.native="onSubmit('loginForm')"
+                            >
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="密码" prop="password">
+                            <el-input
+                                type="password"
+                                placeholder="请输入密码"
+                                v-model="loginForm.password"
+                                @keyup.enter.native="onSubmit('loginForm')"
+                            ></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button 
+                                type="primary"
+                                @click="onSubmit('loginForm')"
+                            >登录</el-button>
+                            <el-button
+                                @click="resetForm('loginForm')"
+                            >重置</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <script>
 import PageTitle from "components/PageTitle.vue";
-import User from 'service/index';
-import { setLocalStorage, getUrlParam, getLocalStorage } from 'util/index';
+import { User } from "service/index";
+import { setLocalStorage, getUrlParam, getLocalStorage } from "util/index";
+import { Message } from "element-ui";
 
 const user = new User();
 
@@ -90,7 +93,6 @@ export default {
                     };
                     user.login(this.loginForm)
                         .then( data => {
-                            console.log(this.redirect);
                             const status = data.status;
                             // 登录成功
                             if( status == 0 ){
@@ -98,17 +100,38 @@ export default {
                             }
                             // 登录失败
                             else{
-                                alert(data.msg);
-                                console.log(data);
+                                Message.error({
+                                    showClose: true,
+                                    message: data.msg,
+                                    customClass: "message-z-index",
+                                    center: true,
+                                });
                             }
+                        }, err => {
+                            Message.error({
+                                showClose: true,
+                                message: err,
+                                customClass: "message-z-index",
+                                center: true,
+                            });
                         })
                         .catch( err => {
-                            console.log(err);
+                            Message.error({
+                                showClose: true,
+                                message: err,
+                                customClass: "message-z-index",
+                                center: true,
+                            });
                         });
                 }
                 // 校验未通过
                 else {
-                    alert('error');
+                    Message.warning({
+                        showClose: true,
+                        message: "请输入用户名和密码",
+                        customClass: "message-z-index",
+                        center: true,
+                    });
                 }
             });
         },
@@ -132,7 +155,8 @@ export default {
 
 <style scoped>
     .login-form-outter-container{
-        height: 100%;
+        padding: 0 7.5px;
+        min-height: 100%;
         background: #eee;
     }
     .login-form-container{
@@ -146,8 +170,5 @@ export default {
         margin-bottom: 24px;
         font-size: 30px;
         text-align: center;
-    }
-    body{
-        background: #eee;
     }
 </style>
