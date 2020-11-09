@@ -26,6 +26,8 @@ import {
     BreadcrumbItem,
     Table,
     TableColumn,
+    Pagination,
+    Loading,
 } from 'element-ui';
 
 import router from 'router/index.js';
@@ -58,6 +60,8 @@ Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Pagination);
+Vue.use(Loading);
 
 new Vue({
     render: h => h(App),
