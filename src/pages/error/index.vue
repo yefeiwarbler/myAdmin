@@ -3,7 +3,11 @@
         <PageTitle pageTitle="出错啦！ - MARKET AMIN" />
         <p class="err-msg">出错啦！</p>
         <el-col :span="24">
-            <span class="err-redirect">找不到该路径，<el-link type="primary">点我返回首页</el-link></span>
+            <span class="err-redirect">找不到该路径，
+                <el-link type="primary">
+                    <router-link to="/">点我返回首页</router-link>
+                </el-link>
+            </span>
         </el-col>
     </el-row>
 </template>
@@ -24,6 +28,8 @@ export default {
             type: 'warning',
         }).then(() => {
             this.$router.push("/");
+        }).catch((msg) => {
+            console.log(typeof msg);
         });
     },
 }
