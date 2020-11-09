@@ -24,6 +24,8 @@ import {
     Link,
     Breadcrumb,
     BreadcrumbItem,
+    Table,
+    TableColumn,
 } from 'element-ui';
 
 import router from 'router/index.js';
@@ -54,6 +56,8 @@ Vue.use(Button);
 Vue.use(Link);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
+Vue.use(Table);
+Vue.use(TableColumn);
 
 new Vue({
     render: h => h(App),
