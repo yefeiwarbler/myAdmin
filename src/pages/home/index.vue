@@ -56,6 +56,7 @@ export default {
     name: "Home",
     data(){
         return {
+            // 面包屑
             breadcrumbs: [
                 {
                     path: "/",
@@ -76,20 +77,26 @@ export default {
         Message,
     },
     created(){
-        getHomeData().then( data => {
-            this.homeData = data.data;
-        }, err => {
-            Message.error({
-                showClose: true,
-                message: err,
-                customClass: "message-z-index"
-            });
-        });
+        // 获取商品、订单、用户统计数据
+        getHomeData().then(
+            data => {
+                this.homeData = data.data;
+            },
+            // 接口错误处理
+            err => {
+                Message.error({
+                    showClose: true,
+                    message: err,
+                    customClass: "message-z-index"
+                });
+            }
+        );
     },
 }
 </script>
 
 <style lang="scss">
+    // 首页卡片样式开始
     .data-panel-container{
         padding: 0 28px;
 
@@ -126,4 +133,5 @@ export default {
             }
         }
     }
+    // 首页卡片样式结束
 </style>

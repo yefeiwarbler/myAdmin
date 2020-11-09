@@ -23,6 +23,6 @@ export default {
 
 <style lang="scss">
     .breadcrumb-container{
-        padding-bottom: 20px;
+        margin-bottom: 20px;
     }
 </style>
