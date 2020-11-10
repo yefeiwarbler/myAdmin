@@ -20,6 +20,8 @@ import {
     Form,
     FormItem,
     Input,
+    Select,
+    Option,
     Button,
     Link,
     Breadcrumb,
@@ -28,6 +30,7 @@ import {
     TableColumn,
     Pagination,
     Loading,
+    Tag,
 } from 'element-ui';
 
 import router from 'router/index.js';
@@ -62,6 +65,9 @@ Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);
 Vue.use(Loading);
+Vue.use(Tag);
+Vue.use(Select);
+Vue.use(Option);
 
 new Vue({
     render: h => h(App),
