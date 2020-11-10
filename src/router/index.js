@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 
 import Product from "pages/product/index.vue";
 import ProductCategory from "pages/product/productCategory.vue";
+import ProductSave from "pages/product/productSave.vue";
+import ProductDetail from "pages/product/productDetail.vue";
 import Order from "pages/order/index.vue";
 import User from "pages/user/index.vue";
 import Home from "pages/home/index.vue";
@@ -26,6 +28,14 @@ const routes = [
             {
                 path: "/product-category",
                 component: ProductCategory,
+            },
+            {
+                path: "/product/save/:id",
+                component: ProductSave,
+            },
+            {
+                path: "/product/detail/:id",
+                component: ProductDetail,
             },
             {
                 path: "/order",

@@ -4,5 +4,5 @@ export {
     User
 };
 
-export * from "./statisticService.js"
+export * from "./statisticService.js";
 export * from "./productService.js"
