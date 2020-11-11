@@ -4,6 +4,8 @@ import Vue from "vue";
 import VueRouter from 'vue-router';
 import App from "./App.vue";
 
+import "./index.css";
+
 // element-ui
 import {
     Container,
