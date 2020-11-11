@@ -5,9 +5,9 @@
   "main": "mian.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules\\.bin\\webpack --mode=production",
+    "build": "cross-env NODE_ENV=production node_modules\\.bin\\webpack --mode=production",
     "babel": "node_modules\\.bin\\babel",
-    "dev": "node_modules\\.bin\\webpack-dev-server"
+    "dev": "cross-env NODE-ENV=development node_modules\\.bin\\webpack-dev-server"
   },
   "keywords": [
     "vue",
@@ -16,14 +16,16 @@
   ],
   "author": "yefeiwarbler",
   "license": "MIT",
+  "browserslist": "> 0.25%, not dead",
   "devDependencies": {
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
     "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/polyfill": "^7.11.5",
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.11.5",
     "babel-loader": "^8.1.0",
     "babel-plugin-component": "^1.1.1",
+    "cross-env": "^7.0.2",
     "css-loader": "^4.3.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^6.1.0",
