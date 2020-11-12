@@ -6,14 +6,9 @@ import Vue from "vue";
 import VueRouter from 'vue-router';
 import App from "./App.vue";
 
-import "./index.css";
 
 // element-ui
 import {
-    Container,
-    Aside,
-    Header,
-    Main,
     Menu,
     MenuItem,
     Submenu,
@@ -41,16 +36,14 @@ import {
 
 import router from 'router/index.js';
 
+import "./index.css";
+
 // mock
 import './mock/index.js';
 
 Vue.use(VueRouter);
 
 // element-ui
-Vue.use(Container);
-Vue.use(Aside);
-Vue.use(Header);
-Vue.use(Main);
 Vue.use(Menu);
 Vue.use(MenuItem);
 Vue.use(Submenu);

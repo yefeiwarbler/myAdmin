@@ -1,15 +1,13 @@
 <template>
-    <el-container>
-        <el-header class="main-header">
-            <Header />
-        </el-header>
-        <el-container style="margin-top: 60px;">
+    <div>
+        <Header />
+        <div class="main-container">
             <Aside />
-            <el-main class="main-container">
+            <main class="main-content">
                 <router-view></router-view>
-            </el-main>
-        </el-container>
-    </el-container>
+            </main>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -26,17 +24,43 @@ export default {
 </script>
 
 <style lang="scss">
-$asideWidth: 200px;
-.main-header{
-    position:fixed;
-    width: 100%;
-    background-color:#262F3E;
-    text-align: right;
-    font-size: 12px;
-    z-index: 3000;
-}
-.main-container{
-    margin-left: $asideWidth;
-    min-height: 100%;
-}
+    $asideWidth: 200px;
+    .main-header{
+        width: 100%;
+        padding: 0 20px;
+        background-color:#262F3E;
+        text-align: right;
+        font-size: 12px;
+        z-index: 3000;
+    }
+    .main-container{
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .main-content{
+        position: absolute;
+        top: 0;
+        left: $asideWidth;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        padding: 20px;
+        overflow: auto;
+    }
+    .main-aside{
+        position: relative;
+        width: 200px;
+        height: 100%;
+
+        .el-menu{
+            height: 100%;
+        }
+
+        .el-submenu .el-menu-item{
+            min-width: unset;
+        }
+    }
 </style>
