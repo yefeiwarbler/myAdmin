@@ -39,7 +39,7 @@ import router from 'router/index.js';
 import "./index.css";
 
 // mock
-import './mock/index.js';
+import(/* webpackChunkName: "mock" */'./mock/index.js');
 
 Vue.use(VueRouter);
 

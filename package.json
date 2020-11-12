@@ -40,7 +40,8 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-visualizer-plugin": "^0.1.11"
   },
   "dependencies": {
     "axios": "^0.20.0",

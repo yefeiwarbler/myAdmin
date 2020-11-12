@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
 
 let plugins = [
     // 生成html
@@ -15,6 +16,9 @@ let plugins = [
     // 将 css 提取到文件中
     new ExtractTextPlugin({
         filename: 'css/index.css'
+    }),
+    new Visualizer({
+        filename: './statistics.html'
     }),
 ];
 
@@ -29,10 +33,15 @@ if( process.env.NODE_ENV === 'development' ){
 }
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        main: './src/main.js',
+        vendor: [
+            'vue', 'axios', '@babel/polyfill', 'regenerator-runtime/runtime', 'core-js/stable'
+        ],
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'js/app.js',
+        filename: 'js/[name].[chunkhash].bundle.js',
         publicPath: '/'
     },
     resolve:{
@@ -117,11 +126,14 @@ module.exports = {
     // 提取公用模块
     optimization:{
         splitChunks: {
-            chunks: 'async',
+            chunks: 'all',
             minSize: 20000,
             maxSize: 0,
-            minChunks: 1,
-            name: 'js/base.js'
+            minChunks: 2,
+            name: 'common.js'
+        },
+        runtimeChunk: {
+            name: 'runtime'
         }
     },
     devServer: {
