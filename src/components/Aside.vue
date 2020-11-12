@@ -1,8 +1,5 @@
 <template>
-    <el-aside
-        width="200px"
-        class="main-aside"
-    >
+    <aside class="main-aside">
         <el-menu
             background-color="#1e222d"
             text-color="#c1c6c8"
@@ -37,7 +34,7 @@
                 <el-menu-item index="/user" route="/user">用户管理</el-menu-item>
             </el-submenu>
         </el-menu>
-    </el-aside>
+    </aside>
 </template>
 
 <script>
@@ -47,16 +44,5 @@ export default {
 </script>
 
 <style lang="scss">
-    .main-aside{
-        position: fixed;
-        height: 100%;
 
-        .el-menu{
-            height: 100%;
-        }
-
-        .el-submenu .el-menu-item{
-            min-width: unset;
-        }
-    }
 </style>

@@ -1,13 +1,14 @@
+import "regenerator-runtime/runtime";
+import "core-js/stable";
+import "@babel/polyfill";
+
 import Vue from "vue";
 import VueRouter from 'vue-router';
 import App from "./App.vue";
 
+
 // element-ui
 import {
-    Container,
-    Aside,
-    Header,
-    Main,
     Menu,
     MenuItem,
     Submenu,
@@ -20,6 +21,8 @@ import {
     Form,
     FormItem,
     Input,
+    Select,
+    Option,
     Button,
     Link,
     Breadcrumb,
@@ -28,20 +31,25 @@ import {
     TableColumn,
     Pagination,
     Loading,
+    Tag,
+    Upload,
+    Dialog,
 } from 'element-ui';
+import VueQuillEditor from 'vue-quill-editor';
 
 import router from 'router/index.js';
 
+import "./index.css";
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+
 // mock
-import './mock/index.js';
+import(/* webpackChunkName: "mock" */'./mock/index.js');
 
 Vue.use(VueRouter);
 
 // element-ui
-Vue.use(Container);
-Vue.use(Aside);
-Vue.use(Header);
-Vue.use(Main);
 Vue.use(Menu);
 Vue.use(MenuItem);
 Vue.use(Submenu);
@@ -62,6 +70,12 @@ Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Pagination);
 Vue.use(Loading);
+Vue.use(Tag);
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Upload);
+Vue.use(Dialog);
+Vue.use(VueQuillEditor);
 
 new Vue({
     render: h => h(App),

@@ -3,12 +3,45 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
+
+let plugins = [
+    // 生成html
+    new HtmlWebpackPlugin({
+        template: './public/index.html', // 指定生成html的模板文件
+        favicon: './public/favicon.ico'
+    }),
+    // vue-style-loader 和 vue-loader 的依赖
+    new VueLoaderPlugin(),
+    // 将 css 提取到文件中
+    new ExtractTextPlugin({
+        filename: 'css/index.css'
+    }),
+    new Visualizer({
+        filename: './statistics.html'
+    }),
+];
+
+// 开发环境
+if( process.env.NODE_ENV === 'development' ){
+    plugins = plugins.concat(
+        // source map
+        new webpack.SourceMapDevToolPlugin({
+            test: /\.(js|css|vue|scss)$/i,
+        }),
+    );
+}
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        main: './src/main.js',
+        vendor: [
+            'vue', 'axios', '@babel/polyfill', 'regenerator-runtime/runtime', 'core-js/stable'
+        ],
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'js/app.js',
+        filename: 'js/[name].[chunkhash].bundle.js',
         publicPath: '/'
     },
     resolve:{
@@ -89,31 +122,18 @@ module.exports = {
             },
         ],
     },
-    plugins: [
-        // 生成html
-        new HtmlWebpackPlugin({
-            template: './public/index.html', // 指定生成html的模板文件
-            favicon: './public/favicon.ico'
-        }),
-        // vue-style-loader 和 vue-loader 的依赖
-        new VueLoaderPlugin(),
-        // 将 css 提取到文件中
-        new ExtractTextPlugin({
-            filename: 'css/index.css'
-        }),
-        // source map
-        new webpack.SourceMapDevToolPlugin({
-            test: /\.(js|css|vue|scss)$/i,
-        }),
-    ],
+    plugins,
     // 提取公用模块
     optimization:{
         splitChunks: {
-            chunks: 'async',
+            chunks: 'all',
             minSize: 20000,
             maxSize: 0,
-            minChunks: 1,
-            name: 'js/base.js'
+            minChunks: 2,
+            name: 'common.js'
+        },
+        runtimeChunk: {
+            name: 'runtime'
         }
     },
     devServer: {

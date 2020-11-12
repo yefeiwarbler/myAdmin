@@ -1,7 +1,9 @@
 <template>
-    <div class="logo-container">
-        <h1 class="logo-title">ADMIN</h1>
-    </div>
+    <router-link to="/">
+        <div class="logo-container">
+            <h1 class="logo-title">ADMIN</h1>
+        </div>
+    </router-link>
 </template>
 
 <script>

@@ -1,13 +1,17 @@
-import Login from 'pages/login/index.vue';
-import Layout from 'components/Layout.vue';
 import VueRouter from 'vue-router';
 
-import Product from "pages/product/index.vue";
-import ProductCategory from "pages/product/productCategory.vue";
-import Order from "pages/order/index.vue";
-import User from "pages/user/index.vue";
-import Home from "pages/home/index.vue";
-import PageError from "pages/error/index.vue";
+const Login = () => import(/* webpackChunkName: "page.login.index" */"pages/login/index.vue");
+const Layout = () => import(/* webpackChunkName: "layout" */"components/Layout.vue");
+
+const Product = () => import(/* webpackChunkName: "page.product" */"pages/product/index.vue");
+const ProductCategory = () => import(/* webpackChunkName: "page.product" */"pages/product/productCategory.vue");
+const ProductSave = () => import(/* webpackChunkName: "page.product" */"pages/product/productSave.vue");
+const ProductDetail = () => import(/* webpackChunkName: "page.product" */"pages/product/productDetail.vue");
+
+const Order = () => import(/* webpackChunkName: "page.order.index" */"pages/order/index.vue");
+const User = () => import(/* webpackChunkName: "page.user.index" */"pages/user/index.vue");
+const Home = () => import(/* webpackChunkName: "page.home.index" */"pages/home/index.vue");
+const PageError = () => import(/* webpackChunkName: "page.error.index" */"pages/error/index.vue");
 
 const routes = [
     // 登录页面
@@ -26,6 +30,18 @@ const routes = [
             {
                 path: "/product-category",
                 component: ProductCategory,
+            },
+            {
+                path: "/product/save/",
+                component: ProductSave,
+            },
+            {
+                path: "/product/save/:id",
+                component: ProductSave,
+            },
+            {
+                path: "/product/detail/:id",
+                component: ProductDetail,
             },
             {
                 path: "/order",
