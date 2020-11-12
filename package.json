@@ -49,6 +49,7 @@
     "element-ui": "^2.13.2",
     "regenerator-runtime": "^0.13.7",
     "vue": "^2.6.11",
+    "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.4.7"
   }
 }

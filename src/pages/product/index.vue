@@ -10,7 +10,7 @@
             element-loading-background="rgba(255, 255, 255, 0.7)"
             element-loading-spinner="el-icon-loading"
         >
-            <el-col :span="24">
+            <el-col :span="18">
                 <el-form
                     :inline="true"
                     :model="searchForm"
@@ -41,6 +41,13 @@
                         >重置</el-button>
                     </el-form-item>
                 </el-form>
+            </el-col>
+            <el-col :span="6">
+                <div class="container-button-manage">
+                    <router-link to="/product/save">
+                        <el-button type="primary">添加商品</el-button>
+                    </router-link>
+                </div>
             </el-col>
             <el-col :span="24">
                 <el-table 
@@ -121,7 +128,6 @@ import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
 import { Loading, Message, MessageBox } from "element-ui";
 import { Product } from "service/index.js";
-import axios from "axios";
 
 const _product = new Product();
 
@@ -177,7 +183,6 @@ export default {
     components: {
         PageTitle,
         Breadcrumb,
-        Message,
     },
     methods: {
         // 页数发生变化时，获取新页数的数据
@@ -302,6 +307,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scope>
+    .container-button-manage{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 30px;
+    }
 </style>

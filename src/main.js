@@ -32,11 +32,17 @@ import {
     Pagination,
     Loading,
     Tag,
+    Upload,
+    Dialog,
 } from 'element-ui';
+import VueQuillEditor from 'vue-quill-editor';
 
 import router from 'router/index.js';
 
 import "./index.css";
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
 
 // mock
 import(/* webpackChunkName: "mock" */'./mock/index.js');
@@ -67,6 +73,9 @@ Vue.use(Loading);
 Vue.use(Tag);
 Vue.use(Select);
 Vue.use(Option);
+Vue.use(Upload);
+Vue.use(Dialog);
+Vue.use(VueQuillEditor);
 
 new Vue({
     render: h => h(App),

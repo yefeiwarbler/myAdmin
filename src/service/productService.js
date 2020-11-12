@@ -18,6 +18,30 @@ class Product{
                 return response.data;
             });
     }
+
+    // 获取商品分类
+    async getCategoryList(categoryId){
+        return axios.post('/product/category', {categoryId})
+            .then( response => {
+                return response.data;
+            })
+    }
+
+    // 添加/编辑商品
+    async saveProductInfo(productInfo){
+        return axios.post('/product/save', productInfo)
+            .then( response => {
+                return response.data;
+            });
+    }
+
+    // 获取商品信息
+    async getProductInfo(productId){
+        return axios.post('/product/info', {productId})
+            .then( response => {
+                return response.data;
+            });
+    }
 }
 
 export {
