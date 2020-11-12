@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const plugins = [
+let plugins = [
     // 生成html
     new HtmlWebpackPlugin({
         template: './public/index.html', // 指定生成html的模板文件
@@ -18,7 +18,7 @@ const plugins = [
     }),
 ];
 
-// 生产环境
+// 开发环境
 if( process.env.NODE_ENV === 'development' ){
     plugins = plugins.concat(
         // source map

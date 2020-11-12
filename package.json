@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production node_modules\\.bin\\webpack --mode=production",
     "babel": "node_modules\\.bin\\babel",
-    "dev": "cross-env NODE-ENV=development node_modules\\.bin\\webpack-dev-server"
+    "dev": "cross-env NODE_ENV=development node_modules\\.bin\\webpack-dev-server"
   },
   "keywords": [
     "vue",
