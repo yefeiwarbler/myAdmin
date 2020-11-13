@@ -6,6 +6,7 @@
             active-text-color="#fff"
             :default-active="this.$route.path"
             router
+            class="main-nav-vertical"
         >
             <el-menu-item index="/" route="/">
                 <i class="el-icon-s-home"></i>
@@ -44,5 +45,17 @@ export default {
 </script>
 
 <style lang="scss">
+    .main-aside{
+        position: relative;
+        height: 100%;
 
+        .el-menu{
+            height: 100%;
+        }
+
+        .main-nav-vertical{
+            height: 100%;
+            width: 200px;
+        }
+    }
 </style>

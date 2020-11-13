@@ -1,6 +1,6 @@
-import "regenerator-runtime/runtime";
 import "core-js/stable";
-import "@babel/polyfill";
+import "regenerator-runtime/runtime";
+// import "@babel/polyfill";
 
 import Vue from "vue";
 import VueRouter from 'vue-router';
@@ -39,13 +39,13 @@ import VueQuillEditor from 'vue-quill-editor';
 
 import router from 'router/index.js';
 
-import "./index.css";
+import "./index.scss";
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 
 // mock
-import(/* webpackChunkName: "mock" */'./mock/index.js');
+import './mock/index.js';
 
 Vue.use(VueRouter);
 
