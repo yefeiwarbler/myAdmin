@@ -2,20 +2,22 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 
 let plugins = [
     // 生成html
     new HtmlWebpackPlugin({
         template: './public/index.html', // 指定生成html的模板文件
-        favicon: './public/favicon.ico'
+        favicon: './public/favicon.ico',
     }),
     // vue-style-loader 和 vue-loader 的依赖
-    new VueLoaderPlugin(),
+    new VueLoaderPlugin({
+
+    }),
     // 将 css 提取到文件中
-    new ExtractTextPlugin({
-        filename: 'css/index.css'
+    new MiniCssExtractPlugin({
+
     }),
     new Visualizer({
         filename: './statistics.html'
@@ -36,7 +38,7 @@ module.exports = {
     entry: {
         main: './src/main.js',
         vendor: [
-            'vue', 'axios', '@babel/polyfill', 'regenerator-runtime/runtime', 'core-js/stable'
+            'vue', 'axios', 'regenerator-runtime/runtime', 'core-js/stable'
         ],
     },
     output: {
@@ -68,18 +70,16 @@ module.exports = {
             // 样式文件加载
             {
                 test: /\.s?css$/i,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'vue-style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                esModule: false,// 默认为true，4.x版本的css-loader默认使用了es模块化规范，vue-style-loader不支持
-                            }
-                        },
-                        'sass-loader'
-                    ]
-                }),
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            esModule: false,// 默认为true，4.x版本的css-loader默认使用了es模块化规范，vue-style-loader不支持
+                        }
+                    },
+                    'sass-loader',
+                ]
             },
             // 图片加载，url-loader依赖于file-loader并会在运行时调用file-loader
             {
