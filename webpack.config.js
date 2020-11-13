@@ -78,6 +78,7 @@ module.exports = {
                             esModule: false,// 默认为true，4.x版本的css-loader默认使用了es模块化规范，vue-style-loader不支持
                         }
                     },
+                    'postcss-loader',
                     'sass-loader',
                 ]
             },
