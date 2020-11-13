@@ -71,7 +71,7 @@ Mock.mock("/product/save", "post", function(options){
     }
 });
 
-// 添加/编辑商品
+// 获取商品详情
 Mock.mock("/product/info", "post", function(options){
     const { productId } = options.body;
     return Mock.mock({
@@ -80,6 +80,8 @@ Mock.mock("/product/info", "post", function(options){
             productId,
             "firstCategoryId|1-100": 1,
             "secondCategoryId|1-100": 1,
+            "firstCategoryName|1-10": "",
+            "secondCategoryName|1-10": "",
             "name": "商品名称",
             "subTitle": "商品描述",
             "subImage": [
