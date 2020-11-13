@@ -38,7 +38,6 @@ export default {
         left: $asideWidth;
         right: 0;
         bottom: 0;
-        height: 100%;
         padding: 20px;
         overflow: auto;
     }
