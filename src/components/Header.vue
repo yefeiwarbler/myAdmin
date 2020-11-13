@@ -29,6 +29,12 @@ import Logo from "./Logo.vue";
 import { getLocalStorage, removeLocalStorage } from "util/index";
 import { User } from "service/index";
 
+import {
+    Menu,
+    MenuItem,
+    Submenu,
+} from 'element-ui';
+
 const user = new User();
 
 export default {
@@ -63,8 +69,11 @@ export default {
         }
     },
     components: {
-        Logo
-    }
+        Logo,
+        ElMenu: Menu,
+        ElMenuItem: MenuItem,
+        ElSubmenu: Submenu,
+    },
 }
 </script>
 

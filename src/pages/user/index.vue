@@ -58,7 +58,12 @@
 <script>
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
-import { Loading, Message } from "element-ui";
+import { 
+    Message,
+    Table,
+    TableColumn,
+    Pagination,    
+} from "element-ui";
 import { User } from "service/index.js";
 
 const user = new User();
@@ -98,6 +103,9 @@ export default {
         PageTitle,
         Breadcrumb,
         Message,
+        ElTable: Table,
+        ElTableColumn: TableColumn,
+        ElPagination: Pagination,
     },
     methods: {
         // 页数发生变化时，获取新页数的数据

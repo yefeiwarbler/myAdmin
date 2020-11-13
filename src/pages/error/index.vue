@@ -14,12 +14,17 @@
 
 <script>
 import PageTitle from "components/PageTitle.vue";
-import { MessageBox, Message } from "element-ui";
+import { 
+    MessageBox,
+    Message,
+    Link,
+} from "element-ui";
 
 export default {
     name: "PageError",
     components: {
         PageTitle,
+        ElLink: Link,
     },
     created(){
         MessageBox.confirm('找不到该路径，是否跳转至首页?', '提示', {

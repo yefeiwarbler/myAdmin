@@ -81,10 +81,22 @@
 <script>
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
-import { Message, MessageBox } from "element-ui";
+import {
+    Message,
+    MessageBox,
+    Loading,
+    Form,
+    FormItem,
+    Input,
+    Button,
+    Upload,
+    Dialog,
+} from "element-ui";
 import { Product } from "service/index.js";
 import CategorySelector from "./CategorySelector.vue";
 import editorOption from "util/editorOption.js";
+
+import quillEditor from '../../vendor/QuillEditor.js';
 
 const _product = new Product();
 
@@ -160,6 +172,13 @@ export default {
         PageTitle,
         Breadcrumb,
         CategorySelector,
+        quillEditor,
+        ElForm: Form,
+        ElFormItem: FormItem,
+        ElButton: Button,
+        ElUpload: Upload,
+        ElDialog: Dialog,
+        ElInput: Input,
     },
     methods: {
         // 二级分类菜单数据获取

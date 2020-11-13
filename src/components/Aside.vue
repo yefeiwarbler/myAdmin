@@ -39,8 +39,19 @@
 </template>
 
 <script>
+import {
+    Menu,
+    MenuItem,
+    Submenu,
+} from 'element-ui';
+
 export default {
     name: "Aside",
+    components: {
+        ElMenu: Menu,
+        ElMenuItem: MenuItem,
+        ElSubmenu: Submenu,
+    }
 }
 </script>
 

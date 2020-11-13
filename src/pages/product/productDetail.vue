@@ -60,13 +60,26 @@
 </template>
 
 <script>
+// 自定义组件、配置
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
-import { Message } from "element-ui";
-import { Product } from "service/index.js";
 import CategorySelector from "./CategorySelector.vue";
 import editorOptionDisabled from "util/editorOptionDisabled.js";
 
+// element-ui
+import {
+    Message,
+    Form,
+    FormItem,
+    Upload,
+    Dialog,
+} from "element-ui";
+
+// quill-editor
+import quillEditor from '../../vendor/QuillEditor.js';
+
+// service
+import { Product } from "service/index.js";
 const _product = new Product();
 
 export default {
@@ -118,6 +131,11 @@ export default {
         PageTitle,
         Breadcrumb,
         CategorySelector,
+        quillEditor,
+        ElForm: Form,
+        ElFormItem: FormItem,
+        ElUpload: Upload,
+        ElDialog: Dialog,
     },
     methods: {
         // 二级分类菜单数据获取

@@ -31,9 +31,17 @@
 </template>
 
 <script>
-import { Product } from "service/index.js";
-import { Message, MessageBox } from "element-ui";
+// element-ui
+import {
+    Message,
+    MessageBox,
+    Option,
+    Select,
+    FormItem,
+} from "element-ui";
 
+// service
+import { Product } from "service/index.js";
 const _product = new Product();
 
 export default {
@@ -49,6 +57,11 @@ export default {
             secondCategoryId: "",
             secondCategoryList: [],
         }
+    },
+    components: {
+        ElOption: Option,
+        ElSelect: Select,
+        ElFormItem: FormItem,
     },
     methods:{
         // 加载一级分类
@@ -128,14 +141,11 @@ export default {
         },
         // 二级分类变化检测
         onSecondCategoryChange(secondCategoryId){
-            this.hasCategoryChangeProp()
-                .then(valid => {
-                    if(valid){
-                        const firstCategoryId = this.firstCategoryId || 0,
-                            secondCategoryId = this.secondCategoryId || 0;
-                        this.$props.onCategoryChange(firstCategoryId, secondCategoryId)
-                    }
-                });
+            if(this.hasCategoryChangeProp()){
+                const firstCategoryId = this.firstCategoryId || 0,
+                    secondCategoryId = this.secondCategoryId || 0;
+                this.$props.onCategoryChange(firstCategoryId, secondCategoryId)
+            }
         },
         // 检验父组件是否传递函数
         hasCategoryChangeProp(){

@@ -47,7 +47,18 @@
 import PageTitle from "components/PageTitle.vue";
 import { User } from "service/index";
 import { setLocalStorage, getUrlParam, getLocalStorage } from "util/index";
-import { Message } from "element-ui";
+
+import { 
+    Message,
+    Form,
+    FormItem,
+    Input,
+    Button,
+} from "element-ui";
+
+import {
+
+} from 'element-ui';
 
 const user = new User();
 
@@ -148,7 +159,11 @@ export default {
         },
     },
     components:{
-        PageTitle
+        PageTitle,
+        ElForm: Form,
+        ElFormItem: FormItem,
+        ElInput: Input,
+        ElButton: Button,
     },
 }
 </script>

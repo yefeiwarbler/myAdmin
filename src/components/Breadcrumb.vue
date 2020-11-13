@@ -13,10 +13,19 @@
 </template>
 
 <script>
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+} from 'element-ui';
+
 export default {
     name: "Breadcrumb",
     props: {
         breadcrumbs: Array,
+    },
+    components: {
+        ElBreadcrumb: Breadcrumb,
+        ElBreadcrumbItem: BreadcrumbItem,
     },
 }
 </script>
