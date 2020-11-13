@@ -126,7 +126,19 @@
 <script>
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
-import { Loading, Message, MessageBox } from "element-ui";
+import {
+    Loading,
+    Message,
+    MessageBox,
+    Form,
+    FormItem,
+    Tag,
+    Input,
+    Table,
+    TableColumn,
+    Pagination,
+    Button,
+} from "element-ui";
 import { Product } from "service/index.js";
 
 const _product = new Product();
@@ -183,6 +195,14 @@ export default {
     components: {
         PageTitle,
         Breadcrumb,
+        ElForm: Form,
+        ElFormItem: FormItem,
+        ElTag: Tag,
+        ElInput: Input,
+        ElTable: Table,
+        ElTableColumn: TableColumn,
+        ElPagination: Pagination,
+        ElButton: Button,
     },
     methods: {
         // 页数发生变化时，获取新页数的数据

@@ -59,15 +59,15 @@
                         <img width="100%" :src="dialog.dialogImageUrl" alt="">
                     </el-dialog>
                 </el-form-item>
-                <el-form-item label="商品详情" class="test">
+                <el-form-item label="商品详情">
                     <quill-editor
-                        style="line-height: 22px; z-index: 3000;"
+                        style="line-height: 22px;"
                         ref="productDetail"
                         v-model="productForm.detail"
                         :options="editorOption"
                     ></quill-editor>
                 </el-form-item>
-                <el-form-item label="">
+                <el-form-item>
                     <el-button 
                         type="primary"
                         @click="submitForm('productForm')"
@@ -81,15 +81,27 @@
 <script>
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
-import { Message, MessageBox } from "element-ui";
+import {
+    Message,
+    MessageBox,
+    Loading,
+    Form,
+    FormItem,
+    Input,
+    Button,
+    Upload,
+    Dialog,
+} from "element-ui";
 import { Product } from "service/index.js";
 import CategorySelector from "./CategorySelector.vue";
 import editorOption from "util/editorOption.js";
 
+import quillEditor from '../../vendor/QuillEditor.js';
+
 const _product = new Product();
 
 export default {
-    name: "Product",
+    name: "ProductSave",
     data(){
         return {
             // 面包屑
@@ -160,6 +172,13 @@ export default {
         PageTitle,
         Breadcrumb,
         CategorySelector,
+        quillEditor,
+        ElForm: Form,
+        ElFormItem: FormItem,
+        ElButton: Button,
+        ElUpload: Upload,
+        ElDialog: Dialog,
+        ElInput: Input,
     },
     methods: {
         // 二级分类菜单数据获取

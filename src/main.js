@@ -1,81 +1,32 @@
-import "regenerator-runtime/runtime";
-import "core-js/stable";
-import "@babel/polyfill";
-
 import Vue from "vue";
+// vue-router
 import VueRouter from 'vue-router';
-import App from "./App.vue";
-
-
-// element-ui
-import {
-    Menu,
-    MenuItem,
-    Submenu,
-    MenuItemGroup,
-    Dropdown,
-    DropdownMenu,
-    DropdownItem,
-    Row,
-    Col,
-    Form,
-    FormItem,
-    Input,
-    Select,
-    Option,
-    Button,
-    Link,
-    Breadcrumb,
-    BreadcrumbItem,
-    Table,
-    TableColumn,
-    Pagination,
-    Loading,
-    Tag,
-    Upload,
-    Dialog,
-} from 'element-ui';
-import VueQuillEditor from 'vue-quill-editor';
-
-import router from 'router/index.js';
-
-import "./index.css";
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-
-// mock
-import(/* webpackChunkName: "mock" */'./mock/index.js');
-
 Vue.use(VueRouter);
 
 // element-ui
-Vue.use(Menu);
-Vue.use(MenuItem);
-Vue.use(Submenu);
-Vue.use(MenuItemGroup);
-Vue.use(Dropdown);
-Vue.use(DropdownMenu);
-Vue.use(DropdownItem);
+import {
+    Row,
+    Col,
+    Link,
+    Loading,
+} from 'element-ui';
+
 Vue.use(Row);
 Vue.use(Col);
-Vue.use(Input);
-Vue.use(Form);
-Vue.use(FormItem);
-Vue.use(Button);
 Vue.use(Link);
-Vue.use(Breadcrumb);
-Vue.use(BreadcrumbItem);
-Vue.use(Table);
-Vue.use(TableColumn);
-Vue.use(Pagination);
 Vue.use(Loading);
-Vue.use(Tag);
-Vue.use(Select);
-Vue.use(Option);
-Vue.use(Upload);
-Vue.use(Dialog);
-Vue.use(VueQuillEditor);
+
+// babel-polyfill
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
+import App from "./App.vue";
+// 路由
+import router from 'router/index.js';
+// 样式
+import "./index.scss";
+// mock
+import './mock/index.js';
 
 new Vue({
     render: h => h(App),

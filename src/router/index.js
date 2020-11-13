@@ -1,17 +1,17 @@
 import VueRouter from 'vue-router';
 
-const Login = () => import(/* webpackChunkName: "page.login.index" */"pages/login/index.vue");
+const Login = () => import(/* webpackChunkName: "login" */"pages/login/index.vue");
 const Layout = () => import(/* webpackChunkName: "layout" */"components/Layout.vue");
 
-const Product = () => import(/* webpackChunkName: "page.product" */"pages/product/index.vue");
-const ProductCategory = () => import(/* webpackChunkName: "page.product" */"pages/product/productCategory.vue");
-const ProductSave = () => import(/* webpackChunkName: "page.product" */"pages/product/productSave.vue");
-const ProductDetail = () => import(/* webpackChunkName: "page.product" */"pages/product/productDetail.vue");
+const Product = () => import(/* webpackChunkName: "product" */"pages/product/index.vue");
+const ProductCategory = () => import(/* webpackChunkName: "product" */"pages/product/productCategory.vue");
+const ProductSave = () => import(/* webpackChunkName: "product" */"pages/product/productSave.vue");
+const ProductDetail = () => import(/* webpackChunkName: "product" */"pages/product/productDetail.vue");
 
-const Order = () => import(/* webpackChunkName: "page.order.index" */"pages/order/index.vue");
-const User = () => import(/* webpackChunkName: "page.user.index" */"pages/user/index.vue");
-const Home = () => import(/* webpackChunkName: "page.home.index" */"pages/home/index.vue");
-const PageError = () => import(/* webpackChunkName: "page.error.index" */"pages/error/index.vue");
+const Order = () => import(/* webpackChunkName: "order" */"pages/order/index.vue");
+const User = () => import(/* webpackChunkName: "user" */"pages/user/index.vue");
+const Home = () => import(/* webpackChunkName: "home" */"pages/home/index.vue");
+const PageError = () => import(/* webpackChunkName: "error" */"pages/error/index.vue");
 
 const routes = [
     // 登录页面

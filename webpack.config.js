@@ -2,23 +2,34 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// css样式从js中分离
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// bundle分析
 const Visualizer = require('webpack-visualizer-plugin');
+// gzip压缩插件
+const CompressionPlugin = require("compression-webpack-plugin");
 
 let plugins = [
     // 生成html
     new HtmlWebpackPlugin({
         template: './public/index.html', // 指定生成html的模板文件
-        favicon: './public/favicon.ico'
+        favicon: './public/favicon.ico',
     }),
     // vue-style-loader 和 vue-loader 的依赖
-    new VueLoaderPlugin(),
-    // 将 css 提取到文件中
-    new ExtractTextPlugin({
-        filename: 'css/index.css'
+    new VueLoaderPlugin({
+
     }),
+    // 将 css 提取到文件中
+    new MiniCssExtractPlugin({
+        filename: 'css/[name].[chunkhash].css'
+    }),
+    // bundle分析
     new Visualizer({
         filename: './statistics.html'
+    }),
+    // gzip压缩
+    new CompressionPlugin({
+        algorithm: 'gzip'
     }),
 ];
 
@@ -36,7 +47,7 @@ module.exports = {
     entry: {
         main: './src/main.js',
         vendor: [
-            'vue', 'axios', '@babel/polyfill', 'regenerator-runtime/runtime', 'core-js/stable'
+            'regenerator-runtime/runtime', 'core-js/stable'
         ],
     },
     output: {
@@ -44,6 +55,13 @@ module.exports = {
         filename: 'js/[name].[chunkhash].bundle.js',
         publicPath: '/'
     },
+    // 排除依赖，用于cdn加速
+    externals:{
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'axios': 'axios',
+    },
+    // 设置文件路径别名
     resolve:{
         alias: {
             pages       : path.resolve(__dirname, 'src/pages'),
@@ -68,18 +86,17 @@ module.exports = {
             // 样式文件加载
             {
                 test: /\.s?css$/i,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'vue-style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                esModule: false,// 默认为true，4.x版本的css-loader默认使用了es模块化规范，vue-style-loader不支持
-                            }
-                        },
-                        'sass-loader'
-                    ]
-                }),
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            esModule: false,// 默认为true，4.x版本的css-loader默认使用了es模块化规范，vue-style-loader不支持
+                        }
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ]
             },
             // 图片加载，url-loader依赖于file-loader并会在运行时调用file-loader
             {
@@ -125,12 +142,15 @@ module.exports = {
     plugins,
     // 提取公用模块
     optimization:{
+        minimize: true,
         splitChunks: {
-            chunks: 'all',
-            minSize: 20000,
-            maxSize: 0,
+            chunks: 'async',
+            // 最小块体积(单位：Byte)：约20KB
+            minSize: 30000,
+            // 最大块体积(单位：Byte)：约200KB，超过将尝试拆分
+            maxSize: 200000,
             minChunks: 2,
-            name: 'common.js'
+            name: 'common'
         },
         runtimeChunk: {
             name: 'runtime'

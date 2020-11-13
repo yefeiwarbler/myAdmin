@@ -16,19 +16,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
     .logo-container{
         width: 200px;
-        height: 60px;
-        margin-left: -20px;
+        height: 40px;
         padding: 10px 20px;
         text-align: left;
     }
     .logo-title{
         font-size: 30px;
         color: #409EFE;
-    }
-    .logo-title:hover{
-        cursor: pointer;
+
+        &:hover{
+            cursor: pointer;
+        }
     }
 </style>

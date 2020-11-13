@@ -25,14 +25,6 @@ export default {
 
 <style lang="scss">
     $asideWidth: 200px;
-    .main-header{
-        width: 100%;
-        padding: 0 20px;
-        background-color:#262F3E;
-        text-align: right;
-        font-size: 12px;
-        z-index: 3000;
-    }
     .main-container{
         position: absolute;
         top: 60px;
@@ -46,21 +38,7 @@ export default {
         left: $asideWidth;
         right: 0;
         bottom: 0;
-        height: 100%;
         padding: 20px;
         overflow: auto;
-    }
-    .main-aside{
-        position: relative;
-        width: 200px;
-        height: 100%;
-
-        .el-menu{
-            height: 100%;
-        }
-
-        .el-submenu .el-menu-item{
-            min-width: unset;
-        }
     }
 </style>

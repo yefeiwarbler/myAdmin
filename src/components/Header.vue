@@ -1,37 +1,26 @@
 <template>
     <header class="main-header">
-        <el-row>
-            <el-col :span="6">
-                <el-row type="flex" justify="start">
-                    <Logo />
-                </el-row>
-            </el-col>
-            <el-col :span="18">
-                <el-row type="flex" justify="end">
-                    <el-menu 
-                        :default-active="activeIndex"
-                        class="el-menu-demo"
-                        mode="horizontal"
-                        @select="handleSelect"
-                        background-color="#262F3E"
-                        text-color="#c1c6c8"
-                        active-text-color="#fff"
-                    >
-                        <el-submenu index="1">
-                            <template slot="title">
-                                <i class="el-icon-user-solid"></i>
-                                <span v-if="this.username">欢迎，{{this.username}}</span>
-                                <span v-else>欢迎您</span>
-                            </template>
-                            <el-menu-item
-                                index="1-1"
-                                @click="logout()"
-                            >退出登录</el-menu-item>
-                        </el-submenu>
-                    </el-menu>
-                </el-row>
-            </el-col>
-        </el-row>
+        <Logo />
+        <el-menu 
+            :default-active="activeIndex"
+            mode="horizontal"
+            @select="handleSelect"
+            background-color="#262F3E"
+            text-color="#c1c6c8"
+            active-text-color="#fff"
+        >
+            <el-submenu index="1">
+                <template slot="title">
+                    <i class="el-icon-user-solid"></i>
+                    <span v-if="this.username">欢迎，{{this.username}}</span>
+                    <span v-else>欢迎您</span>
+                </template>
+                <el-menu-item
+                    index="1-1"
+                    @click="logout()"
+                >退出登录</el-menu-item>
+            </el-submenu>
+        </el-menu>
     </header>
 </template>
 
@@ -39,6 +28,12 @@
 import Logo from "./Logo.vue";
 import { getLocalStorage, removeLocalStorage } from "util/index";
 import { User } from "service/index";
+
+import {
+    Menu,
+    MenuItem,
+    Submenu,
+} from 'element-ui';
 
 const user = new User();
 
@@ -74,11 +69,21 @@ export default {
         }
     },
     components: {
-        Logo
-    }
+        Logo,
+        ElMenu: Menu,
+        ElMenuItem: MenuItem,
+        ElSubmenu: Submenu,
+    },
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    .main-header{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color:#262F3E;
+        font-size: 12px;
+        z-index: 3000;
+    }
 </style>
