@@ -59,15 +59,15 @@
                         <img width="100%" :src="dialog.dialogImageUrl" alt="">
                     </el-dialog>
                 </el-form-item>
-                <el-form-item label="商品详情" class="test">
+                <el-form-item label="商品详情">
                     <quill-editor
-                        style="line-height: 22px; z-index: 3000;"
+                        style="line-height: 22px;"
                         ref="productDetail"
                         v-model="productForm.detail"
                         :options="editorOption"
                     ></quill-editor>
                 </el-form-item>
-                <el-form-item label="">
+                <el-form-item>
                     <el-button 
                         type="primary"
                         @click="submitForm('productForm')"
@@ -89,7 +89,7 @@ import editorOption from "util/editorOption.js";
 const _product = new Product();
 
 export default {
-    name: "Product",
+    name: "ProductSave",
     data(){
         return {
             // 面包屑
