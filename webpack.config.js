@@ -2,8 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// css样式从js中分离
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// bundle分析
 const Visualizer = require('webpack-visualizer-plugin');
+// gzip压缩插件
+const CompressionPlugin = require("compression-webpack-plugin");
 
 let plugins = [
     // 生成html
@@ -17,10 +21,15 @@ let plugins = [
     }),
     // 将 css 提取到文件中
     new MiniCssExtractPlugin({
-
+        filename: 'css/[name].[chunkhash].css'
     }),
+    // bundle分析
     new Visualizer({
         filename: './statistics.html'
+    }),
+    // gzip压缩
+    new CompressionPlugin({
+        algorithm: 'gzip'
     }),
 ];
 
@@ -38,7 +47,7 @@ module.exports = {
     entry: {
         main: './src/main.js',
         vendor: [
-            'vue', 'axios', 'regenerator-runtime/runtime', 'core-js/stable'
+            'regenerator-runtime/runtime', 'core-js/stable'
         ],
     },
     output: {
@@ -46,6 +55,13 @@ module.exports = {
         filename: 'js/[name].[chunkhash].bundle.js',
         publicPath: '/'
     },
+    // 排除依赖，用于cdn加速
+    externals:{
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'axios': 'axios',
+    },
+    // 设置文件路径别名
     resolve:{
         alias: {
             pages       : path.resolve(__dirname, 'src/pages'),
@@ -126,12 +142,15 @@ module.exports = {
     plugins,
     // 提取公用模块
     optimization:{
+        minimize: true,
         splitChunks: {
-            chunks: 'all',
-            minSize: 20000,
-            maxSize: 0,
+            chunks: 'async',
+            // 最小块体积(单位：Byte)：约20KB
+            minSize: 30000,
+            // 最大块体积(单位：Byte)：约200KB，超过将尝试拆分
+            maxSize: 200000,
             minChunks: 2,
-            name: 'common.js'
+            name: 'common'
         },
         runtimeChunk: {
             name: 'runtime'
