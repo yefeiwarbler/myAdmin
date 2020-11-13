@@ -119,15 +119,12 @@ export default {
         onFirstCategoryChange(firstCategoryId){
             this.secondCategoryId = "";
             this.secondCategoryList = [];
-            this.getSecondCategory(firstCategoryId);
-            this.hasCategoryChangeProp()
-                .then(valid => {
-                    if(valid){
-                        const firstCategoryId = this.firstCategoryId || 0,
-                            secondCategoryId = this.secondCategoryId || 0;
-                        this.$props.onCategoryChange(firstCategoryId, secondCategoryId)
-                    }
-                });
+            this.getSecondCategory(firstCategoryId);            
+            if(this.hasCategoryChangeProp()){
+                const firstCategoryId = this.firstCategoryId || 0,
+                    secondCategoryId = this.secondCategoryId || 0;
+                this.$props.onCategoryChange(firstCategoryId, secondCategoryId)
+            }
         },
         // 二级分类变化检测
         onSecondCategoryChange(secondCategoryId){
@@ -141,7 +138,7 @@ export default {
                 });
         },
         // 检验父组件是否传递函数
-        async hasCategoryChangeProp(){
+        hasCategoryChangeProp(){
             return typeof this.$props.onCategoryChange === 'function';
         }
     },
