@@ -37,7 +37,7 @@ Mock.mock(`/product/set_sale_status`, "post", function(options){
     const {productId, status} = options.body;
     return Mock.mock({
         "status": 0,
-        "data": "修改商品状态成功"
+        "data": "商品状态修改成功"
     })
     // return Mock.mock({
     //     "status": 1,
