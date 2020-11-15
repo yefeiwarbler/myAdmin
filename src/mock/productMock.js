@@ -1,5 +1,12 @@
 import Mock from "mockjs";
 
+function getUrlParam(url, name){
+    let queryString = url.split("?")[1] || "";
+    let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
+    let res = queryString.match(reg);
+    return res === null ? "" : decodeURIComponent(res[2]);
+}
+
 // 商品列表
 Mock.mock(`/product/list`, "post", function(options){
     const data = JSON.parse(options.body);
@@ -100,4 +107,55 @@ Mock.mock("/product/info", "post", function(options){
             "status": "1",
         },
     });
+});
+
+// 商品分类列表
+Mock.mock(/product\/category\/list*/, "get", function(options){
+    const url = options.url;
+    const parentCategoryId = +getUrlParam(url, "parentCategoryId");
+    if( parentCategoryId === 0 ){
+        return Mock.mock({
+            "status": 0,
+            "parentCategoryId": parentCategoryId,
+            "parentCategoryName": "所有",
+            "list|10": [
+                {
+                    "categoryId|100000-999999": 1,
+                    "categoryName|5-10": "",
+                }
+            ]
+        });
+    }
+    else {
+        return Mock.mock({
+            "status": 0,
+            "parentCategoryId": parentCategoryId,
+            "parentCategoryName|5-10": "",
+            "list|10": [
+                {
+                    "categoryId|100000-999999": 1,
+                    "categoryName|5-10": "",
+                }
+            ]
+        });
+    }
+});
+
+
+// 添加/编辑商品
+Mock.mock("/product/category", "put", function(options){
+    const { categoryId, newCategoryName } = options.body;
+    const n = Math.random() > 0.01;
+    if( n ){
+        return Mock.mock({
+            "status": 0,
+            "msg": "分类名称修改成功",
+        });
+    }
+    else {
+        return Mock.mock({
+            "status": 1,
+            "msg": "服务器错误",
+        });
+    }
 });

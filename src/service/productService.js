@@ -42,6 +42,24 @@ class Product{
                 return response.data;
             });
     }
+
+    // 获取分类列表
+    async getCategoryList(params){
+        const { parentCategoryId } = params;
+        return axios.get('/product/category/list', { params: {parentCategoryId} })
+            .then( response => {
+                return response.data;
+            });
+    }
+
+    // 获取商品信息
+    async updateCategoryName(params){
+        const { parentCategoryId, newCategoryName } = params;
+        return axios.put('/product/category', { parentCategoryId, newCategoryName })
+            .then( response => {
+                return response.data;
+            });
+    }
 }
 
 export {

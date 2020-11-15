@@ -18,7 +18,7 @@
                     <span>商品</span>
                 </template>
                 <el-menu-item index="/product" route="/product">商品管理</el-menu-item>
-                <el-menu-item index="/product-category" route="/product-category">品类管理</el-menu-item>
+                <el-menu-item index="/product/category" route="/product/category/list">分类管理</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">

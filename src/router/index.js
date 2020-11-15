@@ -5,6 +5,7 @@ const Layout = () => import(/* webpackChunkName: "layout" */"components/Layout.v
 
 const Product = () => import(/* webpackChunkName: "product" */"pages/product/index.vue");
 const ProductCategory = () => import(/* webpackChunkName: "product" */"pages/product/productCategory.vue");
+const ProductCategoryAdd = () => import(/* webpackChunkName: "product" */"pages/product/ProductCategoryAdd.vue");
 const ProductSave = () => import(/* webpackChunkName: "product" */"pages/product/productSave.vue");
 const ProductDetail = () => import(/* webpackChunkName: "product" */"pages/product/productDetail.vue");
 
@@ -28,8 +29,16 @@ const routes = [
                 component: Product,
             },
             {
-                path: "/product-category",
+                path: "/product/category/list",
                 component: ProductCategory,
+            },
+            {
+                path: "/product/category/list/:id",
+                component: ProductCategory,
+            },
+            {
+                path: "/product/category/add",
+                component: ProductCategoryAdd,
             },
             {
                 path: "/product/save/",
