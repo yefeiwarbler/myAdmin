@@ -11,16 +11,12 @@
             element-loading-spinner="el-icon-loading"
         >
             <el-col :span="18">
-                <el-form>
-                    <el-form-item>
-                        <p>当前分类：{{parentCategoryName}}</p>
-                    </el-form-item>
-                </el-form>
+                <p>当前分类：{{parentCategoryName}}</p>
             </el-col>
             <el-col :span="6">
                 <div class="container-button-manage">
                     <router-link to="/product/category/add">
-                        <el-button type="primary">添加分类</el-button>
+                        <el-button type="primary" icon="el-icon-circle-plus">添加分类</el-button>
                     </router-link>
                 </div>
             </el-col>
@@ -45,14 +41,17 @@
                         <template slot-scope="scope">
                             <el-button 
                                 size="small"
+                                type="primary"
                                 @click="openMessageBox(scope.row.categoryId)"
+                                plain
                             >修改分类名称</el-button>
                             <router-link 
                                 v-if="parentCategoryId === 0"
                                 :to="`/product/category/list/${scope.row.categoryId}`"
                             >
-                                <el-button 
+                                <el-button
                                     size="small"
+                                    plain
                                 >查看子分类</el-button>
                             </router-link>
                         </template>
@@ -164,7 +163,7 @@ export default {
             // 取消修改
             .catch(() => {
 
-            })
+            });
         },
         // 请求修改分类名称
         updateCategoryName(categoryId, newCategoryName){
@@ -198,7 +197,7 @@ export default {
                         });
                     }
                 )
-                // 重置当前
+                // 重置当前修改的分类id
                 .finally(() => {
                     this.modifyCategoryId = "";
                 })

@@ -52,10 +52,19 @@ class Product{
             });
     }
 
-    // 获取商品信息
+    // 修改商品分类名称
     async updateCategoryName(params){
-        const { parentCategoryId, newCategoryName } = params;
-        return axios.put('/product/category', { parentCategoryId, newCategoryName })
+        const { categoryId, newCategoryName } = params;
+        return axios.put('/product/category', { categoryId, newCategoryName })
+            .then( response => {
+                return response.data;
+            });
+    }
+
+    // 新增商品分类
+    async addNewCategory(params){
+        const { parentCategoryId, categoryName } = params;
+        return axios.post('/product/category', { parentCategoryId, categoryName })
             .then( response => {
                 return response.data;
             });

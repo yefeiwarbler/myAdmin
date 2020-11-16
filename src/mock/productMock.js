@@ -121,7 +121,7 @@ Mock.mock(/product\/category\/list*/, "get", function(options){
             "list|10": [
                 {
                     "categoryId|100000-999999": 1,
-                    "categoryName|5-10": "",
+                    "categoryName|1-10": "",
                 }
             ]
         });
@@ -142,10 +142,10 @@ Mock.mock(/product\/category\/list*/, "get", function(options){
 });
 
 
-// 添加/编辑商品
+// 修改商品分类名称
 Mock.mock("/product/category", "put", function(options){
     const { categoryId, newCategoryName } = options.body;
-    const n = Math.random() > 0.01;
+    const n = Math.random() > 0.5;
     if( n ){
         return Mock.mock({
             "status": 0,
@@ -156,6 +156,24 @@ Mock.mock("/product/category", "put", function(options){
         return Mock.mock({
             "status": 1,
             "msg": "服务器错误",
+        });
+    }
+});
+
+// 新增商品分类
+Mock.mock("/product/category", "post", function(options){
+    const { parentCategoryId, categoryName } = options.body;
+    const n = Math.random() > 0.5;
+    if( n ){
+        return Mock.mock({
+            "status": 0,
+            "msg": "分类名称修改成功",
+        });
+    }
+    else {
+        return Mock.mock({
+            "status": 1,
+            "msg": "该分类已存在",
         });
     }
 });
