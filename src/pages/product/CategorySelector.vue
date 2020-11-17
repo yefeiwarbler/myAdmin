@@ -66,7 +66,7 @@ export default {
     methods:{
         // 加载一级分类
         getFirstCategory(categoryId = 0){
-            _product.getCategoryList()
+            _product.getCategoryList({parentCategoryId: categoryId})
                 .then(
                     res => {
                         console.log("categoryListResponse", res);
@@ -98,7 +98,7 @@ export default {
         },
         // 加载二级分类
         getSecondCategory(firstCategoryId = 0){
-            _product.getCategoryList({categoryId: firstCategoryId})
+            _product.getCategoryList({parentCategoryId: firstCategoryId})
                 .then(
                     res => {
                         console.log("categoryListResponse", res);
@@ -126,7 +126,7 @@ export default {
                         message: errMsg,
                         customClass: "message-z-index"
                     });
-                })
+                });
         },
         // 一级分类变化检测
         onFirstCategoryChange(firstCategoryId){

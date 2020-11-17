@@ -127,16 +127,16 @@
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
 import {
-    Loading,
     Message,
     MessageBox,
+    Pagination,
+    Loading,
     Form,
     FormItem,
     Tag,
     Input,
     Table,
     TableColumn,
-    Pagination,
     Button,
 } from "element-ui";
 import { Product } from "service/index.js";

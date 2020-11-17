@@ -19,14 +19,6 @@ class Product{
             });
     }
 
-    // 获取商品分类
-    async getCategoryList(categoryId){
-        return axios.post('/product/category', {categoryId})
-            .then( response => {
-                return response.data;
-            })
-    }
-
     // 添加/编辑商品
     async saveProductInfo(productInfo){
         return axios.post('/product/save', productInfo)

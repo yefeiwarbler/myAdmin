@@ -131,16 +131,16 @@ import Breadcrumb from "components/Breadcrumb.vue";
 
 // element-ui
 import {
-    Loading,
     Message,
     MessageBox,
+    Pagination,
+    Loading,
     Form,
     FormItem,
     Tag,
     Input,
     Table,
     TableColumn,
-    Pagination,
     Button,
     Link,
 } from "element-ui";
