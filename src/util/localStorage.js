@@ -14,7 +14,7 @@ export function getLocalStorage(key){
         const data = localStorage.getItem(key);
         return JSON.parse(data);
     }
-    return "";
+    return null;
 }
 
 export function removeLocalStorage(key){

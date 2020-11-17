@@ -46,9 +46,15 @@ export default {
             username: "",
         };
     },
+    beforeCreate(){
+        let userInfo = getLocalStorage("userInfo");
+        if( userInfo === null ){
+            this.$router.push("login");
+        }
+    },
     created(){
         let userInfo = getLocalStorage("userInfo");
-        this.username = userInfo.username || "";
+        this.username = userInfo?.username || "";
     },
     methods: {
         handleSelect(key, keyPath) {

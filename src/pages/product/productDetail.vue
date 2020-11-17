@@ -63,7 +63,6 @@
 // 自定义组件、配置
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
-import CategorySelector from "./CategorySelector.vue";
 import editorOptionDisabled from "util/editorOptionDisabled.js";
 
 // element-ui
@@ -130,7 +129,6 @@ export default {
     components: {
         PageTitle,
         Breadcrumb,
-        CategorySelector,
         quillEditor,
         ElForm: Form,
         ElFormItem: FormItem,
