@@ -141,7 +141,6 @@ Mock.mock(/product\/category\/list*/, "get", function(options){
     }
 });
 
-
 // 修改商品分类名称
 Mock.mock("/product/category", "put", function(options){
     const { categoryId, newCategoryName } = options.body;

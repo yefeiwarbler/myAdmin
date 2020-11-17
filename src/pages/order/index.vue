@@ -41,10 +41,17 @@
                     stripe
                 >
                     <el-table-column
-                        prop="orderNo"
                         label="订单号"
                         width="150"
-                    ></el-table-column>
+                    >
+                        <template slot-scope="scope">
+                            <el-link type="primary">
+                                <router-link
+                                    :to="`/order/detail/${scope.row.orderNo}`"
+                                >{{scope.row.orderNo}}</router-link>
+                            </el-link>
+                        </template>
+                    </el-table-column>
                     <el-table-column
                         label="收件人"
                         prop="receiverName"
@@ -54,8 +61,24 @@
                     <el-table-column
                         label="订单状态"
                         width="150"
-                        prop="statusDesc"
                     >
+                        <template slot-scope="scope">
+                            <el-tag 
+                                v-if="scope.row.statusDesc === '已支付'"
+                            >已支付</el-tag>
+                            <el-tag
+                                v-else-if="scope.row.statusDesc === '已发货'"
+                                type="success"
+                            >已发货</el-tag>
+                            <el-tag
+                                v-else-if="scope.row.statusDesc === '已取消'"
+                                type="danger"
+                            >已取消</el-tag>
+                            <el-tag
+                                v-else-if="scope.row.statusDesc === '未支付'"
+                                type="warning"
+                            >未支付</el-tag>
+                        </template>
                     </el-table-column>
                     <el-table-column
                         label="订单总价"
@@ -102,8 +125,11 @@
 </template>
 
 <script>
+// 自定义组件、配置
 import PageTitle from "components/PageTitle.vue";
 import Breadcrumb from "components/Breadcrumb.vue";
+
+// element-ui
 import {
     Loading,
     Message,
@@ -116,7 +142,10 @@ import {
     TableColumn,
     Pagination,
     Button,
+    Link,
 } from "element-ui";
+
+// service
 import { Order } from "service/orderService.js";
 
 const _order = new Order();
@@ -177,6 +206,7 @@ export default {
         ElTableColumn: TableColumn,
         ElPagination: Pagination,
         ElButton: Button,
+        ElLink: Link,
     },
     methods: {
         // 页数发生变化时，获取新页数的数据
@@ -190,13 +220,13 @@ export default {
             this.loading = true;
             _order.getOrderList( params )
                 .then(
-                    (data) => {
+                    (res) => {
                         // 分页器
-                        this.pager.total = data.total || 0;
-                        this.pager.pageSize = data.pageSize || 10;
-                        this.pager.currentPage = data.pageNum || 1;
-                        // 商品列表
-                        this.orderList = data.list;
+                        this.pager.total = res.total || 0;
+                        this.pager.pageSize = res.pageSize || 10;
+                        this.pager.currentPage = res.pageNum || 1;
+                        // 订单列表
+                        this.orderList = res.list;
                     },
                     // 错误处理
                     errMsg => {
