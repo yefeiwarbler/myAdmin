@@ -106,6 +106,8 @@ export default {
             color: #fff;
             opacity: 1;
             transition: all .3s;
+            // bug-fix：google chrome@86.0.4240.193,edge
+            box-shadow: 0px 0px 1px #fff;
 
             .data-number{
                 margin-top: 30px;
